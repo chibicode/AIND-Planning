@@ -470,8 +470,10 @@ class PlanningGraph():
         :param node_s2: PgNode_s
         :return: bool
         """
-        # TODO test for negation between nodes
-        return False
+        # Same as __eq__ but can avoid class checks and check for opposite signs
+        # of is_pos.
+        return (node_s1.is_pos != node_s2.is_pos and
+                node_s1.symbol == node_s2.symbol)
 
     def inconsistent_support_mutex(self, node_s1: PgNode_s, node_s2: PgNode_s):
         """
@@ -489,8 +491,14 @@ class PlanningGraph():
         :param node_s2: PgNode_s
         :return: bool
         """
-        # TODO test for Inconsistent Support between nodes
-        return False
+        for node_s1_parent in node_s1.parents:
+            for node_s2_parent in node_s2.parents:
+                # There exists a pair of actions from the parents of s1 and s2
+                # that are not mutually exclusive.
+                if not node_s1_parent.is_mutex(node_s2_parent):
+                    return False
+
+        return True
 
     def h_levelsum(self) -> int:
         """The sum of the level costs of the individual goals (admissible if goals independent)
@@ -498,6 +506,17 @@ class PlanningGraph():
         :return: int
         """
         level_sum = 0
-        # TODO implement
-        # for each goal in the problem, determine the level cost, then add them together
+        goals = None
+        if isinstance(self.problem.goal, list):
+            goals = self.problem.goal
+        else:
+            goals = [self.problem.goal]
+        # goal = expr(...)
+        for goal in goals:
+            for level_number, s_level in enumerate(self.s_levels):
+                # Check if the S level contains the goal
+                if PgNode_s(goal, True) in s_level:
+                    level_sum += level_number
+                    # Only check for the first appearance, so break early
+                    break
         return level_sum
