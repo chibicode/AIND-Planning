@@ -103,13 +103,13 @@ Unload(C2, P2, SFO)
 #### Compare and contrast non-heuristic search result metrics (optimality, time elapsed, number of node expansions) for Problems 1,2, and 3.
 
 - **BFS:**
-  - **Optimality:** Finds an optimal solution, because of the nature of BFS - if it finds a solution, then it must be the shortest path, given that the cost of a path is the same.
+  - **Optimality:** Finds an optimal solution, because of the nature of BFS - if it finds a solution, then it must be the shortest path, given that the cost of a path is the same. (from the Udacity video lectures on search)
   - **Time Elapsed:** Much slower than DFS. Probably because the branching factor is large.
-  - **Number of Node Expansions:** Much larger than DFS - BFS is less memory effecient than DFS because it must keep all the nodes on a level in the memory.
+  - **Number of Node Expansions:** Much larger than DFS - BFS is less memory effecient than DFS because it must keep all the nodes on a level in the memory (from the Udacity video lectures on search)
 - **DFS:**
-  - **Optimality:** Does not find an optimal solution, because of the nature of DFS - if a solution exists at both a shallower level and a deeper level, DFS might find a deeper level first.
+  - **Optimality:** Does not find an optimal solution, because of the nature of DFS - if a solution exists at both a shallower level and a deeper level, DFS might find a deeper level first. (from the Udacity video lectures on search)
   - **Time Elapsed:** Much faster than BFS. Probably because the branching factor is large and searching deep is faster than searching wide.
-  - **Number of Node Expansions:** Much smaller than BFS because DFS is more memory efficient.
+  - **Number of Node Expansions:** Much smaller than BFS because DFS is more memory efficient. (from the Udacity video lectures on search)
 - **Uniform Cost:**
   - **Optimality:** Finds an optimal solution, because this is pretty much equivalent to BFS.
   - **Time Elapsed:** Slightly faster than BFS because it uses memoization.
@@ -118,7 +118,7 @@ Unload(C2, P2, SFO)
 #### Compare and contrast heuristic search result metrics using A* with the "ignore preconditions" and "level-sum" heuristics for Problems 1, 2, and 3.
 
 - **A* Ignore Preconditions Heuristic:**
-  - **Optimality:** Finds an optimal solution, because A* with an admissible heuristic is guaranteed to find the shortest path.
+  - **Optimality:** Finds an optimal solution, because A* with an admissible heuristic is guaranteed to find the shortest path. (from the Udacity video lectures on search)
   - **Time Elapsed:** Very fast, almost as fast as DFS, because computing the heuristic is cheap.
   - **Number of Node Expansions:** Much more compared to level sum.
 - **A* Level Sum Heuristic:**
